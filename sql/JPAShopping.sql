@@ -34,7 +34,9 @@ ALTER TABLE users ADD
     otpHash      VARCHAR(64)   NULL,
     otpExpiry    DATETIME      NULL,
     otpAttempts  INT           NOT NULL DEFAULT 0;
+    resethash     VARCHAR(64) NULL,
+    resetexpiry   DATETIME2   NULL,
+    resetattempts INT         NOT NULL CONSTRAINT DF_Users_resetattempts DEFAULT 0;
 
 -- Tài khoản cũ đã tồn tại thì coi như đã kích hoạt
 UPDATE users SET isActive = 1 WHERE isActive = 0;
-
