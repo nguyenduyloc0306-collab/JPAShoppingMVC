@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.iotstar.service.UserService;
 import vn.iotstar.service.impl.UserServiceImpl;
 import vn.iotstar.util.Constant;
@@ -16,7 +19,8 @@ public class RegisterController extends HttpServlet {
     private final UserService service = new UserServiceImpl();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null && session.getAttribute(Constant.SESSION_ACCOUNT) != null) {
             resp.sendRedirect(req.getContextPath() + "/waiting");
@@ -26,7 +30,8 @@ public class RegisterController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
@@ -52,13 +57,16 @@ public class RegisterController extends HttpServlet {
             return;
         }
 
-        boolean ok = service.register(username, password, email, fullname, phone);
+        // phone rỗng -> null để không lưu chuỗi "" vào DB (bỏ phần này nếu cột phone là NOT NULL)
+        boolean ok = service.register(username, password, email, fullname,
+                                      phone.isEmpty() ? null : phone);
         if (ok) {
-            resp.sendRedirect(req.getContextPath() + "/login?registered=1");
-        } else {
-            req.setAttribute("alert", "System error!");
-            req.getRequestDispatcher(REGISTER).forward(req, resp);
+            req.getSession().setAttribute("pendingUser", username);
+            resp.sendRedirect(req.getContextPath() + "/verify-otp");
+            return;
         }
+        req.setAttribute("alert", "Đăng ký không thành công, vui lòng thử lại");
+        req.getRequestDispatcher(REGISTER).forward(req, resp);
     }
 
     private static String trim(String s) {

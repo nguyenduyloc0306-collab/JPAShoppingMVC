@@ -10,4 +10,8 @@ public interface UserService {
     boolean checkExistEmail(String email);
     boolean checkExistUsername(String username);
     boolean checkExistPhone(String phone);
+    String verifyOtp(String username, String otp);
+    String resendOtp(String username);
+    String requestPasswordReset(String email);
+    String resetPassword(String email, String otp, String newPassword);
 }

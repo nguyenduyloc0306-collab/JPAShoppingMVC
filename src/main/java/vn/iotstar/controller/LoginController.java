@@ -56,6 +56,11 @@ public class LoginController extends HttpServlet {
         }
 
         User user = service.login(username.trim(), password);
+        if (user != null && !user.isActive()) {
+            req.getSession().setAttribute("pendingUser", user.getUserName());
+            resp.sendRedirect(req.getContextPath() + "/verify-otp");
+            return;
+        }
         if (user != null) {
             req.getSession(true).setAttribute(Constant.SESSION_ACCOUNT, user);
             if (isRememberMe) {

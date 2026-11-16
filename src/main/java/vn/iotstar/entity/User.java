@@ -2,11 +2,13 @@ package vn.iotstar.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "Users")
@@ -45,4 +47,27 @@ public class User implements Serializable {
 
     @Column(name = "createddate")
     private LocalDate createdDate;
+
+    @Column(name = "isActive", nullable = false)
+    private boolean active = false;
+
+    @ToString.Exclude
+    @Column(name = "otpHash", length = 64)
+    private String otpHash;
+
+    @Column(name = "otpExpiry")
+    private LocalDateTime otpExpiry;
+
+    @Column(name = "otpAttempts", nullable = false)
+    private int otpAttempts = 0;
+
+    @ToString.Exclude
+    @Column(name = "resethash", length = 64)
+    private String resetHash;
+
+    @Column(name = "resetexpiry")
+    private LocalDateTime resetExpiry;
+
+    @Column(name = "resetattempts", nullable = false)
+    private int resetAttempts = 0;
 }

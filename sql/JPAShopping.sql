@@ -27,3 +27,14 @@ INSERT INTO Users(email,username,fullname,[password],roleid,phone,createddate) V
  (N'user@gmail.com',   N'user',    N'Người dùng',    N'123456', 5, N'0900000003', GETDATE());
 INSERT INTO Category(cate_name,icons) VALUES (N'Quần áo nam',N'avatar.png'),(N'Quần áo nữ',N'avatar.png');
 GO
+
+ALTER TABLE users ADD
+    email        NVARCHAR(255) NULL,
+    isActive     BIT           NOT NULL DEFAULT 0,
+    otpHash      VARCHAR(64)   NULL,
+    otpExpiry    DATETIME      NULL,
+    otpAttempts  INT           NOT NULL DEFAULT 0;
+
+-- Tài khoản cũ đã tồn tại thì coi như đã kích hoạt
+UPDATE users SET isActive = 1 WHERE isActive = 0;
+
