@@ -1,0 +1,29 @@
+:root { --bg:#f5f7fa; --card:#fff; --ink:#1f2933; --muted:#667085; --line:#d9dee5; --brand:#0b5fff; --danger:#c62828; --ok:#1b7f3b; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#14181d; --card:#1d232a; --ink:#e8ecf1; --muted:#9aa5b1; --line:#323a44; --brand:#6ea0ff; --danger:#ff7b72; --ok:#56d364; }
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+a { color:var(--brand); }
+.nav { display:flex; gap:16px; align-items:center; padding:12px 24px; background:var(--card); border-bottom:1px solid var(--line); flex-wrap:wrap; }
+.nav .grow { flex:1; }
+.wrap { max-width:960px; margin:24px auto; padding:0 16px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:24px; }
+.auth { max-width:400px; margin:48px auto; }
+label { display:block; margin:12px 0 4px; font-weight:600; }
+input[type=text], input[type=password], input[type=email], input[type=file] {
+  width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); font:inherit; }
+input:focus-visible, button:focus-visible, a:focus-visible { outline:2px solid var(--brand); outline-offset:2px; }
+.btn { display:inline-block; padding:9px 16px; border:0; border-radius:6px; background:var(--brand); color:#fff; font:inherit; cursor:pointer; text-decoration:none; }
+.btn.secondary { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.alert { padding:10px 12px; border-radius:6px; margin:12px 0; border:1px solid var(--danger); color:var(--danger); }
+.alert.ok { border-color:var(--ok); color:var(--ok); }
+.check { display:flex; gap:8px; align-items:center; margin:12px 0; font-weight:400; }
+.check input { width:auto; }
+.toolbar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+.toolbar input[type=text] { width:auto; flex:1; min-width:160px; }
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th, td { padding:10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
+img.thumb { width:80px; height:80px; object-fit:cover; border-radius:6px; background:var(--line); }
+.muted { color:var(--muted); }
