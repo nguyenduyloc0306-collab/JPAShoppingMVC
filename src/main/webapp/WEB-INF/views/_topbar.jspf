@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/style.css">
 <nav class="nav">
   <strong>JPA Shopping</strong>
+  <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+  <c:if test="${sessionScope.account != null}">
+    <a href="${pageContext.request.contextPath}/video">Video của tôi</a>
+    <a href="${pageContext.request.contextPath}/video/add">Thêm video</a>
+  </c:if>
   <c:if test="${sessionScope.account.roleid == 1}">
     <a href="${pageContext.request.contextPath}/admin/home">Trang quản trị</a>
     <a href="${pageContext.request.contextPath}/admin/category/list">Danh mục</a>

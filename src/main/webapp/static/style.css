@@ -27,3 +27,31 @@ table { width:100%; border-collapse:collapse; }
 th, td { padding:10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
 img.thumb { width:80px; height:80px; object-fit:cover; border-radius:6px; background:var(--line); }
 .muted { color:var(--muted); }
+
+/* ===== Video ===== */
+textarea, select, input[type=url] {
+  width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); font:inherit; }
+textarea { min-height:120px; resize:vertical; }
+select:focus-visible, textarea:focus-visible { outline:2px solid var(--brand); outline-offset:2px; }
+.hint { color:var(--muted); font-size:.875rem; margin:4px 0 0; }
+.page-head { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
+.page-head h1, .page-head h2 { margin:0; }
+.vgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px; }
+.vcard { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--card); display:flex; flex-direction:column; }
+.vthumb { display:block; position:relative; aspect-ratio:16/9; background:var(--line); }
+.vthumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.noposter { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2rem; color:var(--muted); }
+.vbody { padding:12px; display:flex; flex-direction:column; gap:4px; flex:1; }
+.vtitle { margin:0; font-size:1rem; line-height:1.35; overflow-wrap:anywhere; }
+.vmeta { margin:0; font-size:.875rem; }
+.vactions { display:flex; gap:12px; align-items:center; margin-top:auto; padding-top:8px; }
+.vactions form { margin:0; }
+.linkbtn { background:none; border:0; padding:0; font:inherit; color:var(--danger); cursor:pointer; text-decoration:underline; }
+.badge { display:inline-block; padding:1px 8px; border-radius:999px; border:1px solid var(--line); font-size:.75rem; font-weight:400; color:var(--muted); vertical-align:middle; }
+.pager { display:flex; gap:6px; justify-content:center; align-items:center; margin-top:24px; flex-wrap:wrap; }
+.pager a, .pager span { min-width:36px; padding:6px 10px; text-align:center; border:1px solid var(--line); border-radius:6px; text-decoration:none; }
+.pager .current { background:var(--brand); border-color:var(--brand); color:#fff; }
+.pager .disabled { color:var(--muted); opacity:.6; }
+.player { aspect-ratio:16/9; background:#000; border-radius:8px; overflow:hidden; margin-bottom:16px; }
+.player iframe, .player video { width:100%; height:100%; border:0; display:block; }
+.vdesc { white-space:pre-line; overflow-wrap:anywhere; margin:12px 0; }

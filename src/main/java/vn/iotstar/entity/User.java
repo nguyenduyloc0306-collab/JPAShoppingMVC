@@ -3,10 +3,13 @@ package vn.iotstar.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -70,4 +73,22 @@ public class User implements Serializable {
 
     @Column(name = "resetattempts", nullable = false)
     private int resetAttempts = 0;
+
+    // 1 User - n Video (khóa ngoại user_id nằm ở bảng Videos)
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<Video> videos = new ArrayList<>();
+
+    public Video addVideo(Video video) {
+        videos.add(video);
+        video.setUser(this);
+        return video;
+    }
+
+    public Video removeVideo(Video video) {
+        videos.remove(video);
+        video.setUser(null);
+        return video;
+    }
 }
