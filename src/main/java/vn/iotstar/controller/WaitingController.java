@@ -23,10 +23,10 @@ public class WaitingController extends HttpServlet {
             } else if (u.getRoleid() == 2) {
                 resp.sendRedirect(ctx + "/manager/home");
             } else {
-                resp.sendRedirect(ctx + "/home");
+                resp.sendRedirect(ctx + "/user/home");
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/login");
         }
-    }
+    }   
 }

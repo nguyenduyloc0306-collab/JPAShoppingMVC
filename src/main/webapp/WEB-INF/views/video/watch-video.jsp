@@ -52,7 +52,7 @@
   </c:if>
 
   <p>
-    <a class="btn secondary" href="${pageContext.request.contextPath}/home">← Trang chủ</a>
+    <a class="btn secondary" href="${pageContext.request.contextPath}/user/home">← Trang chủ</a>
     <c:if test="${owner}">
       <a class="btn secondary" href="${pageContext.request.contextPath}/video">← Video của tôi</a>
       <a class="btn" href="<c:url value='/video/edit'><c:param name='id' value='${video.videoId}'/></c:url>">Sửa</a>
